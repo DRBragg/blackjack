@@ -25,7 +25,7 @@ class Game
       puts "Bust! Game Over"
       @playerBust = true
       @playerScore = 0
-      scoreGame #looping here
+      scoreGame
     else
       puts "Player score: #{playerScore}"
       @playerScore = playerScore
@@ -69,7 +69,7 @@ class Game
       puts "Dealer Busts! Game Over"
       @computerBust = true
       @computerScore = dealerScore
-      scoreGame #looping here
+      scoreGame
     else
       puts "Dealer score: #{dealerScore}"
       @computerScore = dealerScore
@@ -92,11 +92,13 @@ class Game
 
   def dealerMove
     checkDealerScore(hands.score(computer))
-    if @computerScore < 17
-      dealerHit
-    else
-      puts "\nDealer stands\n\n"
-      scoreGame
+    if @computerBust != true
+      if @computerScore < 17
+        dealerHit
+      else
+        puts "\nDealer stands\n\n"
+        scoreGame
+      end
     end
   end
 
